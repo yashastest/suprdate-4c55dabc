@@ -91,7 +91,7 @@ export function PhoneLogin() {
           </button>
           
           <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl mb-2 text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-pink">
-            SUprdate
+            SuprDate
           </h1>
           <p className="text-muted-foreground mb-8">Find your perfect date in minutes</p>
         </div>

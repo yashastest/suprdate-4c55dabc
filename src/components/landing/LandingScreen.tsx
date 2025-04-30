@@ -16,7 +16,7 @@ export const LandingScreen = () => {
         {/* Header */}
         <div className="w-full flex justify-center pt-6">
           <h1 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-pink">
-            SUprdate
+            SuprDate
           </h1>
         </div>
         
@@ -24,7 +24,7 @@ export const LandingScreen = () => {
         <div className="flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto my-8">
           <div className="rounded-3xl overflow-hidden shadow-xl mb-8 transform hover:scale-105 transition-transform duration-300">
             <img 
-              src="/lovable-uploads/206fc370-9499-41d3-9fb7-33407c47e464.png" 
+              src="/lovable-uploads/4ba4f11c-d3bb-4d3c-be09-580cdd41d6ac.png" 
               alt="Couple embracing" 
               className="w-full h-auto max-w-sm rounded-3xl"
             />
