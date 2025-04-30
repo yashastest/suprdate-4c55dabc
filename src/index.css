@@ -43,7 +43,7 @@
   }
   
   body {
-    @apply bg-background text-foreground min-h-screen;
+    @apply bg-background text-foreground min-h-screen font-comfortaa;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -55,6 +55,14 @@
   
   .gradient-bg {
     @apply bg-gradient-to-r from-brand-purple to-brand-pink;
+  }
+  
+  .lime-gradient-bg {
+    @apply bg-gradient-to-r from-brand-lime to-green-300;
+  }
+
+  .dark-gradient-bg {
+    @apply bg-gradient-to-b from-brand-dark to-gray-900;
   }
   
   .card-shadow {

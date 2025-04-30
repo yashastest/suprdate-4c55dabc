@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useAuth } from '@/contexts/AuthContext';
+import { ArrowLeft } from 'lucide-react';
 
 export function PhoneLogin() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -79,11 +80,18 @@ export function PhoneLogin() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 animate-slide-up">
-      <div className="w-full max-w-md space-y-8">
+    <div className="flex flex-col items-center justify-center p-6 animate-slide-up w-full max-w-md mx-auto">
+      <div className="w-full space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl mb-2 gradient-text">
-            15Mins Date
+          <button 
+            onClick={() => navigate('/')}
+            className="absolute top-6 left-6 p-2 rounded-full hover:bg-gray-100"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          
+          <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl mb-2 text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-pink">
+            SUprdate
           </h1>
           <p className="text-muted-foreground mb-8">Find your perfect date in minutes</p>
         </div>
@@ -112,7 +120,7 @@ export function PhoneLogin() {
 
             <Button
               type="submit"
-              className="w-full gradient-bg hover:opacity-90"
+              className="w-full bg-gradient-to-r from-brand-purple to-brand-pink hover:opacity-90 text-white rounded-full py-6"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Send OTP"}
@@ -153,7 +161,7 @@ export function PhoneLogin() {
                 <button 
                   type="button"
                   onClick={() => setIsOtpSent(false)}
-                  className="text-primary hover:underline"
+                  className="text-brand-purple hover:underline"
                 >
                   Change phone number
                 </button>
@@ -162,7 +170,7 @@ export function PhoneLogin() {
 
             <Button
               type="submit"
-              className="w-full gradient-bg hover:opacity-90"
+              className="w-full bg-gradient-to-r from-brand-purple to-brand-pink hover:opacity-90 text-white rounded-full py-6"
               disabled={isSubmitting || otp.length !== 6}
             >
               {isSubmitting ? "Verifying..." : "Verify OTP"}
@@ -173,7 +181,7 @@ export function PhoneLogin() {
               <button 
                 type="button"
                 onClick={handleSendOtp} 
-                className="text-primary hover:underline"
+                className="text-brand-purple hover:underline"
                 disabled={isSubmitting}
               >
                 Resend OTP

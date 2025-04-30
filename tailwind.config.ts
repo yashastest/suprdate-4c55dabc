@@ -19,6 +19,10 @@ export default {
       }
     },
     extend: {
+      fontFamily: {
+        sans: ["Comfortaa", "sans-serif"],
+        comfortaa: ["Comfortaa", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,12 +57,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))"
         },
-        // Custom colors for 15Mins Date app
+        // Custom colors for SUprdate app
         brand: {
           purple: "#9b87f5",
           pink: "#D946EF",
           "light-purple": "#D6BCFA",
           "soft-purple": "#E5DEFF",
+          "lime": "#ccff00",
+          "dark": "#121212",
         }
       },
       borderRadius: {

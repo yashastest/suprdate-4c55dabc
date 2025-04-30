@@ -1,9 +1,9 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { PhoneLogin } from '@/components/auth/PhoneLogin';
 import { useAuth } from '@/contexts/AuthContext';
+import { LandingScreen } from '@/components/landing/LandingScreen';
+import { PhoneLogin } from '@/components/auth/PhoneLogin';
 
 const Index = () => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -29,10 +29,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="flex-1 p-6 pb-16 flex flex-col items-center justify-center">
-        {/* Main content area */}
-        <PhoneLogin />
-      </div>
+      {/* Show landing screen by default, or phone login if redirected from "Get Started" */}
+      {window.location.pathname === '/' ? (
+        <LandingScreen />
+      ) : (
+        <div className="flex-1 p-6 pb-16 flex flex-col items-center justify-center">
+          <PhoneLogin />
+        </div>
+      )}
     </div>
   );
 };

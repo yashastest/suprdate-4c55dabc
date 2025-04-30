@@ -15,6 +15,7 @@ import CreateDate from "./pages/CreateDate";
 import DateDetail from "./pages/DateDetail";
 import Requests from "./pages/Requests";
 import Profile from "./pages/Profile";
+import { PhoneLogin } from "./components/auth/PhoneLogin";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/login" element={<PhoneLogin />} />
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/create-date" element={<CreateDate />} />
