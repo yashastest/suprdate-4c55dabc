@@ -81,29 +81,32 @@ const ChatDetail = () => {
     }
   };
 
+  // Create a title element instead of using JSX directly in the title prop
+  const headerTitle = (
+    <div className="flex items-center">
+      <Avatar className="h-8 w-8 mr-3">
+        {chatDetails.photo ? (
+          <AvatarImage src={chatDetails.photo} />
+        ) : (
+          <AvatarFallback className="bg-brand-purple/30 text-brand-purple font-bold">
+            {chatDetails.name.split(' ').map(n => n[0]).join('')}
+          </AvatarFallback>
+        )}
+      </Avatar>
+      <div>
+        <h1 className="text-base font-medium">{chatDetails.name}</h1>
+        <p className="text-xs text-muted-foreground">
+          {chatDetails.online ? 'Active now' : chatDetails.lastActive}
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader 
         showBackButton={true}
-        title={
-          <div className="flex items-center">
-            <Avatar className="h-8 w-8 mr-3">
-              {chatDetails.photo ? (
-                <AvatarImage src={chatDetails.photo} />
-              ) : (
-                <AvatarFallback className="bg-brand-purple/30 text-brand-purple font-bold">
-                  {chatDetails.name.split(' ').map(n => n[0]).join('')}
-                </AvatarFallback>
-              )}
-            </Avatar>
-            <div>
-              <h1 className="text-base font-medium">{chatDetails.name}</h1>
-              <p className="text-xs text-muted-foreground">
-                {chatDetails.online ? 'Active now' : chatDetails.lastActive}
-              </p>
-            </div>
-          </div>
-        } 
+        title={headerTitle} 
       />
       
       <div className="flex-1 pb-20 pt-2 px-4 overflow-y-auto bg-muted/20">
