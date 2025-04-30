@@ -25,7 +25,7 @@ const ChatList = () => {
       id: '2',
       name: 'John Smith',
       photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200',
-      lastMessage: 'That sounds great! I'd love to join you.',
+      lastMessage: "That sounds great! I'd love to join you.",
       time: '25m ago',
       unread: 0,
       online: true
