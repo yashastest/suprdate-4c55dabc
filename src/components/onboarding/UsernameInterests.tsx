@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -106,7 +105,6 @@ export function UsernameInterests({
                     interests.length >= 3 ? "opacity-50" : ""
                   }`}
                   onClick={() => toggleInterest(tag)}
-                  disabled={interests.length >= 3}
                 >
                   {tag}
                 </Badge>

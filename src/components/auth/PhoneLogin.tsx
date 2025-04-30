@@ -139,6 +139,7 @@ export function PhoneLogin() {
                       {slots.map((slot, index) => (
                         <InputOTPSlot
                           key={index}
+                          index={index} {/* Added the missing index prop */}
                           {...slot}
                           className="border-input bg-background"
                         />
