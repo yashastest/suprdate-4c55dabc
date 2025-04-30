@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { DatePost } from '@/types/user';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { MapPin, Clock, CreditCard } from 'lucide-react';
 
 interface DateCardProps {
   datePost: DatePost;
@@ -25,19 +26,14 @@ export function DateCard({ datePost, user }: DateCardProps) {
         datePost.boosted ? "ring-2 ring-brand-pink" : ""
       )}
     >
-      <div className="relative">
-        <div className="aspect-[3/4] relative overflow-hidden rounded-t-2xl">
+      <div className="grid grid-cols-3 h-full">
+        {/* Image Column */}
+        <div className="aspect-[3/4] relative overflow-hidden col-span-1 rounded-l-2xl">
           <img
             src={user.photos[0]}
             alt="Profile"
             className="w-full h-full object-cover"
           />
-          
-          {datePost.ready15 && (
-            <div className="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-              Ready in 15mins
-            </div>
-          )}
           
           {datePost.boosted && (
             <div className="absolute top-3 left-3 bg-brand-pink text-white text-xs px-2 py-1 rounded-full flex items-center">
@@ -49,42 +45,56 @@ export function DateCard({ datePost, user }: DateCardProps) {
           )}
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-          <h3 className="text-white font-bold text-xl mb-1">{user.username}</h3>
-          <div className="flex items-center justify-between">
-            <Badge variant="secondary" className="bg-brand-purple/80 text-white">
-              {datePost.dateType}
-            </Badge>
-            <span className="text-white text-sm">{datePost.billPreference}</span>
-          </div>
-        </div>
-      </div>
-      
-      <CardContent className="p-4">
-        <div className="flex gap-2 mb-4 flex-wrap">
-          {datePost.vibeTags.map((tag, index) => (
-            <Badge key={index} variant="outline" className="bg-muted">
-              {tag}
-            </Badge>
-          ))}
-        </div>
-        
-        <div className="flex justify-between items-center">
+        {/* Details Column */}
+        <div className="col-span-2 p-4 flex flex-col justify-between h-full">
           <div>
-            <p className="text-sm text-muted-foreground">
-              {datePost.city}, {datePost.pincode}
-            </p>
-            <p className="text-sm font-medium">{datePost.availability}</p>
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="font-poppins font-extrabold text-lg">{user.username}</h3>
+              <Badge variant="secondary" className="bg-brand-purple text-white">
+                {datePost.dateType}
+              </Badge>
+            </div>
+            
+            <div className="flex items-center text-sm text-muted-foreground mb-2">
+              <MapPin className="h-3.5 w-3.5 mr-1" />
+              <span>{datePost.city}, {datePost.pincode}</span>
+            </div>
+            
+            <div className="flex items-center text-sm text-muted-foreground mb-3">
+              <Clock className="h-3.5 w-3.5 mr-1" />
+              <span>{datePost.availability}</span>
+              {datePost.ready15 && (
+                <Badge className="ml-2 bg-green-500 text-white text-xs">Ready in 15m</Badge>
+              )}
+            </div>
+            
+            <div className="flex items-center text-sm text-muted-foreground mb-3">
+              <CreditCard className="h-3.5 w-3.5 mr-1" />
+              <span>{datePost.billPreference}</span>
+            </div>
+            
+            <div className="flex gap-2 mb-4 flex-wrap">
+              {datePost.vibeTags.slice(0, 3).map((tag, index) => (
+                <Badge key={index} variant="outline" className="bg-muted">
+                  {tag}
+                </Badge>
+              ))}
+              {datePost.vibeTags.length > 3 && (
+                <Badge variant="outline" className="bg-muted">
+                  +{datePost.vibeTags.length - 3}
+                </Badge>
+              )}
+            </div>
           </div>
           
           <Button 
             onClick={() => navigate(`/date/${datePost.id}`)}
-            className="gradient-bg hover:opacity-90"
+            className="gradient-bg hover:opacity-90 w-full"
           >
-            View
+            View Details
           </Button>
         </div>
-      </CardContent>
+      </div>
     </Card>
   );
 }

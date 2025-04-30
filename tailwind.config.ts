@@ -22,6 +22,8 @@ export default {
       fontFamily: {
         sans: ["Comfortaa", "sans-serif"],
         comfortaa: ["Comfortaa", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        jetbrains: ["JetBrains Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,6 +94,10 @@ export default {
         "slide-down": {
           "0%": { transform: "translateY(-20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" }
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" }
         }
       },
       animation: {
@@ -99,7 +105,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-scale": "pulse-scale 2s infinite",
         "slide-up": "slide-up 0.3s ease-out",
-        "slide-down": "slide-down 0.3s ease-out"
+        "slide-down": "slide-down 0.3s ease-out",
+        "float": "float 3s ease-in-out infinite"
       }
     }
   },

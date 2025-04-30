@@ -15,6 +15,10 @@ import CreateDate from "./pages/CreateDate";
 import DateDetail from "./pages/DateDetail";
 import Requests from "./pages/Requests";
 import Profile from "./pages/Profile";
+import ChatList from "./pages/ChatList";
+import ChatDetail from "./pages/ChatDetail";
+import WalletPage from "./pages/Wallet";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { PhoneLogin } from "./components/auth/PhoneLogin";
 
 const queryClient = new QueryClient();
@@ -35,6 +39,10 @@ const App = () => (
             <Route path="/date/:id" element={<DateDetail />} />
             <Route path="/requests" element={<Requests />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/chats" element={<ChatList />} />
+            <Route path="/chats/:id" element={<ChatDetail />} />
+            <Route path="/wallet" element={<WalletPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
