@@ -7,7 +7,7 @@ import { Bell, User, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AppHeaderProps {
-  title?: string;
+  title?: React.ReactNode;
   showBackButton?: boolean;
   className?: string;
   centerTitle?: boolean;
@@ -54,7 +54,11 @@ export function AppHeader({
           )}
           
           {!centerTitle && title && (
-            <h1 className="text-lg font-semibold gradient-text">{title}</h1>
+            typeof title === 'string' ? (
+              <h1 className="text-lg font-semibold gradient-text">{title}</h1>
+            ) : (
+              title
+            )
           )}
           
           {!title && !centerTitle && (
@@ -63,9 +67,13 @@ export function AppHeader({
         </div>
         
         {centerTitle && title && (
-          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-lg font-semibold gradient-text">
-            {title}
-          </h1>
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            {typeof title === 'string' ? (
+              <h1 className="text-lg font-semibold gradient-text">{title}</h1>
+            ) : (
+              title
+            )}
+          </div>
         )}
         
         {isAuthenticated && showActions && (
