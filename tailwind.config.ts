@@ -61,12 +61,12 @@ export default {
         },
         // Custom colors for SUprdate app
         brand: {
-          purple: "#9b87f5",
-          pink: "#D946EF",
-          "light-purple": "#D6BCFA",
-          "soft-purple": "#E5DEFF",
-          "lime": "#ccff00",
-          "dark": "#121212",
+          purple: "#ff3333",
+          pink: "#ff0000",
+          "light-purple": "#ff6666",
+          "soft-purple": "#ff9999",
+          "lime": "#ff3333",
+          "dark": "#000000",
         }
       },
       borderRadius: {
