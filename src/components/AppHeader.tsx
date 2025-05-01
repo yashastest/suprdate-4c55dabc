@@ -26,7 +26,7 @@ export function AppHeader({
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur-sm h-14 flex items-center px-4",
+      "sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur-sm h-14 flex items-center px-4 shadow-lg shadow-black/20",
       className
     )}>
       <div className="flex w-full items-center justify-between">
@@ -44,21 +44,21 @@ export function AppHeader({
           
           {!centerTitle && title && (
             typeof title === 'string' ? (
-              <h1 className="text-lg font-semibold text-white">{title}</h1>
+              <h1 className="text-lg font-semibold gradient-text">{title}</h1>
             ) : (
               title
             )
           )}
           
           {!title && !centerTitle && (
-            <div className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">15Mins Date</div>
+            <div className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">SuprDate</div>
           )}
         </div>
         
         {centerTitle && title && (
           <div className="absolute left-1/2 transform -translate-x-1/2">
             {typeof title === 'string' ? (
-              <h1 className="text-lg font-semibold text-white">{title}</h1>
+              <h1 className="text-lg font-semibold gradient-text">{title}</h1>
             ) : (
               title
             )}
@@ -67,13 +67,13 @@ export function AppHeader({
         
         {isAuthenticated && showActions && (
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon" onClick={() => navigate('/create-date')} className="text-white hover:bg-zinc-800">
+            <Button variant="ghost" size="icon" onClick={() => navigate('/create-date')} className="text-white hover:bg-zinc-800 text-red-500 hover:text-white">
               <Plus className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" onClick={() => navigate('/notifications')} className="text-white hover:bg-zinc-800">
+            <Button variant="ghost" size="icon" onClick={() => navigate('/notifications')} className="text-white hover:bg-zinc-800 text-red-500 hover:text-white">
               <Bell className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" onClick={() => navigate('/profile')} className="text-white hover:bg-zinc-800">
+            <Button variant="ghost" size="icon" onClick={() => navigate('/profile')} className="text-white hover:bg-zinc-800 text-red-500 hover:text-white">
               <User className="h-5 w-5" />
             </Button>
           </div>

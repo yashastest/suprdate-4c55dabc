@@ -16,6 +16,21 @@ export function DatePostPreview({ datePost, onEdit, onPublish }: DatePostPreview
   
   if (!currentUser) return null;
 
+  // Helper function to get activity emoji
+  const getActivityEmoji = (type?: string) => {
+    if (!type) return '📅';
+    
+    switch(type.toLowerCase()) {
+      case 'coffee date': return '☕';
+      case 'dinner date': return '🍽️';
+      case 'drinks date': return '🍸';
+      case 'movie date': return '🎬';
+      case 'walk date': return '🚶‍♀️';
+      case 'adventure date': return '🧗‍♂️';
+      default: return '📅';
+    }
+  };
+
   return (
     <div className="animate-slide-up space-y-6">
       <div className="text-center">
@@ -23,47 +38,58 @@ export function DatePostPreview({ datePost, onEdit, onPublish }: DatePostPreview
         <p className="text-muted-foreground mt-1">How your date will appear to others</p>
       </div>
       
-      <div className="rounded-2xl overflow-hidden card-shadow border">
-        <div className="relative">
-          <div className="aspect-[3/4] relative">
-            <img
-              src={currentUser.photos[0]}
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
-            
-            {datePost.ready15 && (
-              <div className="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                Ready in 15mins
+      <div className="rounded-2xl overflow-hidden card-shadow gradient-border">
+        <div className="bg-black rounded-[calc(var(--radius)-1px)]">
+          <div className="relative">
+            <div className="aspect-[3/4] relative">
+              <img
+                src={currentUser.photos[0]}
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+              
+              {datePost.ready15 && (
+                <div className="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full flex items-center">
+                  <span className="mr-1">⏱️</span>
+                  Ready in 15mins
+                </div>
+              )}
+              
+              {/* Date type badge with emoji */}
+              <div className="absolute bottom-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full flex items-center">
+                <span className="mr-1">{getActivityEmoji(datePost.dateType)}</span>
+                <span>{datePost.dateType}</span>
               </div>
-            )}
-          </div>
-          
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-            <h3 className="text-white font-bold text-xl mb-1">{currentUser.username}</h3>
-            <div className="flex items-center justify-between">
-              <Badge variant="secondary" className="bg-brand-purple/80 text-white">
-                {datePost.dateType}
-              </Badge>
-              <span className="text-white text-sm">{datePost.billPreference}</span>
+            </div>
+            
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4">
+              <h3 className="text-white font-bold text-xl mb-1 gradient-text">{currentUser.username}</h3>
+              <div className="flex items-center justify-between">
+                <Badge variant="outline" className="bg-gradient-to-r from-red-600 to-red-500 text-white border-none">
+                  {datePost.dateType}
+                </Badge>
+                <span className="text-white text-sm">{datePost.billPreference}</span>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="p-4">
-          <div className="flex gap-2 mb-4 flex-wrap">
-            {datePost.vibeTags?.map((tag, index) => (
-              <Badge key={index} variant="outline" className="bg-muted">
-                {tag}
-              </Badge>
-            ))}
-          </div>
           
-          <div>
-            <p className="text-sm text-muted-foreground">
-              {datePost.city}, {datePost.pincode}
-            </p>
-            <p className="text-sm font-medium">{datePost.availability}</p>
+          <div className="p-4">
+            <div className="flex gap-2 mb-4 flex-wrap">
+              {datePost.vibeTags?.map((tag, index) => (
+                <Badge key={index} variant="outline" className="border-red-500/30 bg-zinc-900 text-white">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+            
+            <div>
+              <p className="text-sm text-muted-foreground">
+                <span className="text-red-500">📍</span> {datePost.city}, {datePost.pincode}
+              </p>
+              <p className="text-sm font-medium">
+                <span className="text-red-500">🕒</span> {datePost.availability}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -72,13 +98,13 @@ export function DatePostPreview({ datePost, onEdit, onPublish }: DatePostPreview
         <Button
           onClick={onEdit}
           variant="outline"
-          className="w-full"
+          className="w-full border-zinc-700 text-white hover:bg-zinc-800"
         >
           Edit
         </Button>
         <Button
           onClick={onPublish}
-          className="w-full gradient-bg hover:opacity-90"
+          className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white"
         >
           Publish Date (₹50)
         </Button>
@@ -86,6 +112,8 @@ export function DatePostPreview({ datePost, onEdit, onPublish }: DatePostPreview
           Your card will be charged ₹50 for posting this date
         </p>
       </div>
+      
+      <div className="wave-divider mt-8"></div>
     </div>
   );
 }

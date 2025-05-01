@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { AppHeader } from '@/components/AppHeader';
 import { BottomNavigation } from '@/components/BottomNavigation';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { DateCard } from '@/components/DateCard';
 import { FilterDrawer } from '@/components/discover/FilterDrawer';
-import { Search, MapPin } from 'lucide-react';
+import { Search, MapPin, X } from 'lucide-react';
 import { mockDatePosts, mockUsers } from '@/data/mockData';
 import { DatePost } from '@/types/user';
+import { Badge } from '@/components/ui/badge';
 
 const Discover = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -104,31 +106,75 @@ const Discover = () => {
       interestTags: [],
       ready15: false
     });
+    setSearchQuery('');
   };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
+
+  // Popular date types for quick filtering
+  const popularTypes = ['Coffee Date', 'Dinner Date', 'Drinks Date', 'Movie Date'];
   
   return (
     <div className="min-h-screen flex flex-col">
-      <AppHeader title="Discover" />
+      <AppHeader title={
+        <div className="flex items-center">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">Discover Dates</span>
+        </div>
+      } />
       
-      <div className="flex-1 px-4 pb-20">
-        <div className="sticky top-14 pt-4 pb-2 bg-background z-10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search by location..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
-              />
-            </div>
-            
+      <div className="wave-top pt-4">
+        <div className="bg-gradient-to-b from-black/80 to-black pb-2 pt-10">
+          {/* Featured badge */}
+          <div className="flex justify-center mb-4">
+            <Badge className="bg-gradient-to-r from-red-600 to-red-500 text-white border-none py-1.5 px-6">
+              Find Your Perfect Date ✨
+            </Badge>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex-1 px-4 pb-20 z-10 relative">
+        <div className="sticky top-14 pt-4 pb-2 bg-background z-10 shadow-lg shadow-black/20">
+          <div className="relative flex-1 mb-4">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search by location..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-9 pr-9 bg-zinc-900 border-zinc-800 focus:border-red-500 focus:ring-red-500"
+            />
+            {searchQuery && (
+              <button onClick={clearSearch} className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <X className="h-4 w-4 text-muted-foreground hover:text-white" />
+              </button>
+            )}
+          </div>
+          
+          <div className="flex items-center space-x-2 overflow-x-auto pb-3 scrollbar-none">
             <FilterDrawer 
               filters={filters}
               onFiltersChange={setFilters}
               onApplyFilters={applyFilters}
               onClearFilters={clearFilters}
             />
+            
+            {popularTypes.map((type) => (
+              <Button 
+                key={type}
+                size="sm"
+                variant={filters.dateType === type ? "default" : "outline"}
+                onClick={() => setFilters({...filters, dateType: filters.dateType === type ? "" : type})}
+                className={`whitespace-nowrap ${
+                  filters.dateType === type 
+                    ? 'bg-red-600 text-white hover:bg-red-700' 
+                    : 'border-zinc-800 text-zinc-400 hover:text-white hover:border-red-500'
+                }`}
+              >
+                {type === 'Coffee Date' ? '☕' : type === 'Dinner Date' ? '🍽️' : type === 'Drinks Date' ? '🍸' : '🎬'} {type}
+              </Button>
+            ))}
           </div>
           
           {filters.city && (
@@ -159,14 +205,15 @@ const Discover = () => {
             })
           ) : (
             <div className="col-span-full py-10 text-center text-muted-foreground">
-              <div className="text-4xl mb-4">😕</div>
-              <h3 className="text-lg font-medium mb-1">No dates found</h3>
+              <div className="text-4xl mb-4 emoji-shadow">😕</div>
+              <h3 className="text-lg font-medium mb-1 gradient-text">No dates found</h3>
               <p className="text-sm">Try adjusting your filters or search query</p>
             </div>
           )}
         </div>
       </div>
       
+      <div className="wave-divider mt-auto"></div>
       <BottomNavigation />
     </div>
   );

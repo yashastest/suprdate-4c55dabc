@@ -8,8 +8,14 @@ export const LandingScreen = () => {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-black">
-      {/* Background */}
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-red-900/10 to-black z-0"></div>
+      
+      {/* Animated circles in background */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl animate-pulse delay-700"></div>
+      </div>
       
       {/* Hero Section */}
       <div className="flex-1 flex flex-col items-center justify-between p-6 z-10">
@@ -22,7 +28,7 @@ export const LandingScreen = () => {
         
         {/* Main Content with Image */}
         <div className="flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto my-8">
-          <div className="rounded-3xl overflow-hidden shadow-xl mb-8 transform hover:scale-105 transition-transform duration-300 border border-red-500/20">
+          <div className="rounded-3xl overflow-hidden shadow-xl mb-8 transform hover:scale-105 transition-transform duration-300 border border-red-500/20 gradient-border">
             <img 
               src="/lovable-uploads/4ba4f11c-d3bb-4d3c-be09-580cdd41d6ac.png" 
               alt="Couple embracing" 
@@ -30,11 +36,9 @@ export const LandingScreen = () => {
             />
           </div>
           
-          <p className="text-xl font-bold mb-6">
-            <span className="text-white">Land a date</span>
-            <span className="text-red-500 mx-1">-</span>
-            <span className="text-red-500">Your soulmate's 900 seconds away</span>
-          </p>
+          <h2 className="text-xl font-bold mb-6 gradient-text">
+            Land a date - Your soulmate's 900 seconds away
+          </h2>
           
           <p className="text-muted-foreground text-sm mb-10">
             Find someone just like you, just one click away to share your love, life and laugh.
@@ -42,7 +46,7 @@ export const LandingScreen = () => {
           
           <Button 
             onClick={() => navigate('/login')} 
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-6 rounded-full text-lg flex items-center justify-center space-x-2 shadow-lg"
+            className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold py-6 rounded-full text-lg flex items-center justify-center space-x-2 shadow-[0_8px_30px_rgb(255,0,0,0.12)]"
           >
             <span>Get Started</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -53,11 +57,14 @@ export const LandingScreen = () => {
         
         {/* Footer with dots indicator */}
         <div className="w-full flex justify-center pb-8 space-x-2">
-          <div className="h-2 w-2 rounded-full bg-red-500"></div>
+          <div className="h-2 w-8 rounded-full bg-gradient-to-r from-red-500 to-red-600"></div>
           <div className="h-2 w-2 rounded-full bg-gray-800"></div>
           <div className="h-2 w-2 rounded-full bg-gray-800"></div>
         </div>
       </div>
+
+      {/* Wave divider */}
+      <div className="wave-divider"></div>
     </div>
   );
 };

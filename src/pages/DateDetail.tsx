@@ -71,7 +71,7 @@ const DateDetail = () => {
   // Create a header component
   const headerTitle = (
     <div className="flex items-center">
-      <h1 className="text-lg font-medium">Date Details</h1>
+      <h1 className="text-lg font-medium gradient-text">Date Details</h1>
     </div>
   );
   
@@ -99,6 +99,8 @@ const DateDetail = () => {
       <div className="flex-1 pb-16">
         {/* Image Gallery */}
         <div className="relative aspect-[4/5]">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent z-10"></div>
+          
           <img 
             src={user.photos[0]} 
             alt={user.username}
@@ -107,14 +109,14 @@ const DateDetail = () => {
           
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-6 text-white">
             <div className="flex items-center">
-              <h1 className="text-3xl font-bold mb-1">{user.username}</h1>
-              <span className="text-2xl ml-2">{getActivityEmoji(datePost.dateType)}</span>
+              <h1 className="text-3xl font-bold mb-1 gradient-text">{user.username}</h1>
+              <span className="text-2xl ml-2 emoji-shadow">{getActivityEmoji(datePost.dateType)}</span>
             </div>
             
             <div className="flex items-center gap-2 mb-2">
               <Badge
                 variant="outline"
-                className="bg-white text-black border-white"
+                className="bg-gradient-to-r from-red-600 to-red-500 text-white border-none"
               >
                 {datePost.dateType}
               </Badge>
@@ -127,7 +129,7 @@ const DateDetail = () => {
             </div>
             
             <div className="flex items-center">
-              <CreditCard className="h-4 w-4 mr-1.5 text-gray-300" />
+              <CreditCard className="h-4 w-4 mr-1.5 text-red-400" />
               <p className="text-lg text-gray-300">{datePost.billPreference}</p>
             </div>
           </div>
@@ -137,7 +139,7 @@ const DateDetail = () => {
           {/* Date Info */}
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="bg-zinc-900 p-2 rounded-full">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 p-2 rounded-full">
                 <Clock className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -145,7 +147,7 @@ const DateDetail = () => {
                 <p className="text-gray-400">
                   {datePost.availability}
                   {datePost.ready15 && (
-                    <Badge className="ml-2 bg-green-500 text-black border-none">
+                    <Badge className="ml-2 bg-green-500 text-white border-none">
                       ⏱️ Ready Now
                     </Badge>
                   )}
@@ -154,7 +156,7 @@ const DateDetail = () => {
             </div>
             
             <div className="flex items-start gap-3">
-              <div className="bg-zinc-900 p-2 rounded-full">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 p-2 rounded-full">
                 <MapPin className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -164,14 +166,14 @@ const DateDetail = () => {
             </div>
             
             <div className="flex items-start gap-3">
-              <div className="bg-zinc-900 p-2 rounded-full">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 p-2 rounded-full">
                 <User className="h-5 w-5 text-white" />
               </div>
               <div>
                 <h3 className="font-medium text-white">Interests</h3>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {user.interests.map((interest: string, index: number) => (
-                    <Badge key={index} variant="outline" className="border-zinc-700 bg-zinc-900 text-white">
+                    <Badge key={index} variant="outline" className="border-red-500/30 bg-zinc-900 text-white">
                       {interest}
                     </Badge>
                   ))}
@@ -181,11 +183,11 @@ const DateDetail = () => {
           </div>
           
           {/* Vibes */}
-          <div>
-            <h3 className="font-medium text-white mb-2">Vibe Tags</h3>
+          <div className="gradient-border p-4">
+            <h3 className="font-medium gradient-text mb-2">Vibe Tags</h3>
             <div className="flex flex-wrap gap-2">
               {datePost.vibeTags.map((tag, index) => (
-                <Badge key={index} className="bg-zinc-800 text-white border-none">
+                <Badge key={index} className="bg-zinc-900 text-white border border-red-500/20">
                   {tag}
                 </Badge>
               ))}
@@ -193,36 +195,39 @@ const DateDetail = () => {
           </div>
           
           {/* Actions */}
-          {isOwnPost ? (
-            <div className="space-y-3 pt-4">
-              <Button
-                variant="outline"
-                className="w-full border-zinc-700 text-white hover:bg-zinc-800"
-                onClick={() => navigate(`/edit-date/${datePost.id}`)}
-              >
-                Edit Date Post
-              </Button>
-              
-              <Button
-                className="w-full bg-white text-black hover:bg-gray-200"
-                onClick={handleBoost}
-              >
-                ⚡ Boost Date (₹30)
-              </Button>
-            </div>
-          ) : (
-            <div className="pt-4">
+          <div className="pt-4 wave-top">
+            {isOwnPost ? (
+              <div className="space-y-3">
+                <Button
+                  variant="outline"
+                  className="w-full border-zinc-700 text-white hover:bg-zinc-800"
+                  onClick={() => navigate(`/edit-date/${datePost.id}`)}
+                >
+                  Edit Date Post
+                </Button>
+                
+                <Button
+                  className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white"
+                  onClick={handleBoost}
+                >
+                  ⚡ Boost Date (₹30)
+                </Button>
+              </div>
+            ) : (
               <Button
                 onClick={() => setIsRequestModalOpen(true)}
-                className="w-full bg-white text-black hover:bg-gray-200 gap-2"
+                className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white gap-2"
               >
                 <Heart className="h-4 w-4" />
                 Send Date Request (₹1)
               </Button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
+      
+      {/* Wave divider at bottom */}
+      <div className="wave-divider mt-auto"></div>
       
       <DateRequestModal
         isOpen={isRequestModalOpen}
