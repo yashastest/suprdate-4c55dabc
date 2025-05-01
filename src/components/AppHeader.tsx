@@ -54,7 +54,7 @@ export function AppHeader({
             <img 
               src="/lovable-uploads/dc524864-338e-4bd6-b7df-3bb1faff440a.png" 
               alt="SuprDate" 
-              className="h-8 object-contain" 
+              className="h-10 object-contain" 
             />
           )}
         </div>

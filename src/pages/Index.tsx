@@ -23,7 +23,7 @@ const Index = () => {
           <img 
             src="/lovable-uploads/dc524864-338e-4bd6-b7df-3bb1faff440a.png" 
             alt="SuprDate" 
-            className="h-20 mb-6 object-contain opacity-70" 
+            className="h-24 mb-6 object-contain opacity-70" 
           />
           <div className="h-4 w-60 bg-white/10 rounded-lg"></div>
         </div>
