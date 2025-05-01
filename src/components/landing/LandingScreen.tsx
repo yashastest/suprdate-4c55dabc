@@ -40,9 +40,11 @@ export const LandingScreen = () => {
       <div className="flex-1 flex flex-col items-center justify-between p-6 z-10">
         {/* Header */}
         <div className="w-full flex justify-center pt-6">
-          <h1 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
-            SuprDate
-          </h1>
+          <img 
+            src="/lovable-uploads/dc524864-338e-4bd6-b7df-3bb1faff440a.png" 
+            alt="SuprDate" 
+            className="h-16 object-contain"
+          />
         </div>
         
         {/* Main Content with Image */}

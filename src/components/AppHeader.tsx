@@ -51,7 +51,11 @@ export function AppHeader({
           )}
           
           {!title && !centerTitle && (
-            <div className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">SuprDate</div>
+            <img 
+              src="/lovable-uploads/dc524864-338e-4bd6-b7df-3bb1faff440a.png" 
+              alt="SuprDate" 
+              className="h-8 object-contain" 
+            />
           )}
         </div>
         

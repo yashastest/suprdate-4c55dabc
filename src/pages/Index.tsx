@@ -20,7 +20,11 @@ const Index = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="animate-pulse flex flex-col items-center">
-          <div className="h-10 w-40 bg-red-500/30 rounded-lg mb-4"></div>
+          <img 
+            src="/lovable-uploads/dc524864-338e-4bd6-b7df-3bb1faff440a.png" 
+            alt="SuprDate" 
+            className="h-20 mb-6 object-contain opacity-70" 
+          />
           <div className="h-4 w-60 bg-white/10 rounded-lg"></div>
         </div>
       </div>
