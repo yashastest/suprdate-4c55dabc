@@ -54,15 +54,15 @@ const Discover = () => {
       );
     }
     
-    if (filters.dateType) {
+    if (filters.dateType && filters.dateType !== 'any_type') {
       result = result.filter(post => post.dateType === filters.dateType);
     }
     
-    if (filters.billPreference) {
+    if (filters.billPreference && filters.billPreference !== 'any_bill') {
       result = result.filter(post => post.billPreference === filters.billPreference);
     }
     
-    if (filters.availability) {
+    if (filters.availability && filters.availability !== 'any_time') {
       result = result.filter(post => post.availability === filters.availability);
     }
     

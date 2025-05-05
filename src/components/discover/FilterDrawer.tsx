@@ -153,7 +153,7 @@ export function FilterDrawer({
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Any Type</SelectItem>
+                    <SelectItem value="any_type">Any Type</SelectItem>
                     <SelectItem value="Coffee">Coffee</SelectItem>
                     <SelectItem value="Dinner">Dinner</SelectItem>
                     <SelectItem value="Movie">Movie</SelectItem>
@@ -172,7 +172,7 @@ export function FilterDrawer({
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Any</SelectItem>
+                    <SelectItem value="any_bill">Any</SelectItem>
                     <SelectItem value="I'll pay">I'll pay</SelectItem>
                     <SelectItem value="You pay">You pay</SelectItem>
                     <SelectItem value="Split">Split</SelectItem>
@@ -191,7 +191,7 @@ export function FilterDrawer({
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Any Time</SelectItem>
+                  <SelectItem value="any_time">Any Time</SelectItem>
                   <SelectItem value="In 15 mins">In 15 mins</SelectItem>
                   <SelectItem value="Evening">Evening</SelectItem>
                   <SelectItem value="Weekend">Weekend</SelectItem>
